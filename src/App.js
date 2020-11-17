@@ -1,6 +1,8 @@
 
 import React, { useEffect, useState } from 'react';
 import { getPokemnos } from './API/api';
+import Main from './components/main.jsx'
+import 'semantic-ui-css/semantic.min.css'
 import './App.css';
 
 
@@ -9,23 +11,21 @@ import './App.css';
 
 function App() {
 
-  const [allPokemons, setAllPokemons] = useState([]);
+  const [allPokemonData, setallPokemonData] = useState([]);
 
-
-  const getAllPokemons = async () => {
-    const allPokemons = await getPokemnos();
-    setAllPokemons(allPokemons);
+  const getallPokemonData = async () => {
+    const allPokemonData = await getPokemnos();
+    setallPokemonData(allPokemonData);
   };
 
 
-
   useEffect(() => {
-    getAllPokemons();
+    getallPokemonData();
   }, []);
 
   return (
     <div className="App">
-      asdfdsfdsf
+      <Main allPokemonData={allPokemonData}/>
     </div>
   );
 

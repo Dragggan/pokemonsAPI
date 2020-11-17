@@ -7,7 +7,7 @@ export const handleError = (err) => {
 
 export const  getPokemnos = async () => {
     let allPokemons = [];
-   await axios.get('https://pokeapi.co/api/v2/pokemon?limit=100&offset=200')
+   await axios.get('https://pokeapi.co/api/v2/pokemon/')
         .then(response => {
             console.log(response)
             allPokemons = response.data.results
