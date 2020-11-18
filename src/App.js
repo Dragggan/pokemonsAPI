@@ -1,3 +1,4 @@
+import axios from 'axios';
 
 import React, { useEffect, useState } from 'react';
 import { getPokemnos } from './API/api';
@@ -19,18 +20,8 @@ function App() {
 
   const [allPokemonData, setallPokemonData] = useState([]);
 
-  const getallPokemonData = async () => {
-    const allPokemonData = await getPokemnos();
-    setallPokemonData(allPokemonData);
-  };
-
-
-
-
-  useEffect(() => {
-    getallPokemonData();
-  }, []);
-
+  useEffect(async () => setallPokemonData(await getPokemnos()),[]);
+    
   return (
     <div className="App">
       <Router>
@@ -39,15 +30,14 @@ function App() {
             <Main allPokemonData={allPokemonData} />
           </Route>
           <Route path='/pokemondetails/:name' render={(props) => (
-            <PokemonDetails {...props}  routerProps={props} allPokemonData={allPokemonData}/>
+            <PokemonDetails {...props}   allPokemonData={allPokemonData}/>
           )} />
         </Switch>
-
       </Router>
     </div>
   );
 
-
+    
 }
 
 export default App;

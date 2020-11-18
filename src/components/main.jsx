@@ -1,39 +1,22 @@
 import React from 'react';
 import { Link } from "react-router-dom";
+import _ from 'lodash'
+import { Grid, Image } from 'semantic-ui-react'
 
-function Main({ allPokemonData }) {
+    // const columns = _.times(16, (i) => (
+    //     <Grid.Column key={i}>
+    //         <h5>sfdsfds</h5>
+    //       <Image src='https://react.semantic-ui.com/images/wireframe/image.png' />
+    //     </Grid.Column>
+    //   ))
+      
+      const Main = ({allPokemonData}) => {
 
-    const renderBodyRow = (name, url) => {
-        console.log(name, url);
-    };
+        return (
+            <div>sdfdsfsd</div>
+        )
 
-
-    return (
-        <div>
-            <table className="ui selectable celled table ">
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Url</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {allPokemonData && allPokemonData.map((m, i) => {
-                        return (
-
-                            <tr key={i} onClick={() => { renderBodyRow(m.name, m.url); }}>
-                                <td><Link to={`/pokemondetails/${m.name}`}>{m.name}</Link> </td>
-                                <td><Link to={`/pokemondetails/${m.name}`}>{m.url}</Link> </td>
-                            </tr>
-
-
-                        );
-                    })}
-                </tbody>
-            </table>
-
-        </div>
-    );
-}
-
+        // <Grid>{columns}</Grid>
+      }
+      
 export default Main;
