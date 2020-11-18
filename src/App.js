@@ -10,8 +10,6 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link,
-
 } from "react-router-dom";
 
 
@@ -27,6 +25,8 @@ function App() {
   };
 
 
+
+
   useEffect(() => {
     getallPokemonData();
   }, []);
@@ -38,8 +38,8 @@ function App() {
           <Route path="/" exact>
             <Main allPokemonData={allPokemonData} />
           </Route>
-          <Route path='/pokemondetails' render={(props) => (
-            <PokemonDetails {...props}  />
+          <Route path='/pokemondetails/:name' render={(props) => (
+            <PokemonDetails {...props}  routerProps={props} allPokemonData={allPokemonData}/>
           )} />
         </Switch>
 
