@@ -1,32 +1,34 @@
 import React from 'react';
-import {Table} from 'semantic-ui-react'
+import { Link} from "react-router-dom";
+
 function Main({ allPokemonData }) {
 
-   const  renderBodyRow =(name,url)=> {
-        console.log(name,url);
-    }
+    const renderBodyRow = (name, url) => {
+        console.log(name, url);
+    };
 
 
     return (
         <div>
-            <table className="ui selectable celled table ">
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Url</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {allPokemonData && allPokemonData.map((m, i) => {
-                        return (
-                            <tr key={i} onClick={() => {renderBodyRow(m.name,m.url)}}>
-                                <td>{m.name}</td>
-                                <td><span className="url">{m.url}</span></td>
-                            </tr>
-                        );
-                    })}
-                </tbody>
-            </table>
+                <table className="ui selectable celled table ">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Url</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {allPokemonData && allPokemonData.map((m, i) => {
+                            return (
+                                <tr key={i} onClick={() => { renderBodyRow(m.name, m.url); }}>
+                                    <td>  <Link to={`/pokemondetails/${m.name}`}>{m.name}</Link> </td>
+                                    <td><span className="url">{m.url}</span></td>
+                                </tr>
+                            );
+                        })}
+                    </tbody>
+                </table>
+
         </div>
     );
 }
