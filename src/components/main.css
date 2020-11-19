@@ -1,0 +1,14 @@
+.container {
+    position: relative;
+    top: 50px;
+}
+
+.headline {
+    position: relative;
+    top: 50px;
+    text-align: center;
+}
+
+.small_container {
+    display: flex;
+}
