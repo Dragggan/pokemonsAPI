@@ -6,7 +6,6 @@ import { MDBTable, MDBTableBody, MDBTableHead } from 'mdbreact';
 
 const DatatablePage = ({ allPokemonData }) => {
 
-
     const [showAllData, setAllData] = useState(false);
 
     const togleAllData = ()  => {
@@ -17,7 +16,8 @@ const DatatablePage = ({ allPokemonData }) => {
         let rows  = [] ;
         allPokemonData.map(m => {
             rows.push({
-                name: <Link to={`/pokemondetails/${m.name}`}>{m.name}</Link>,
+                name1: <Link to={`/pokemondetails/${m.name}`}>{m.name}</Link>,
+                name2:m.name,
                 first_ability: m.abilities[0] ? m.abilities[0].ability.name : "no abitlity",
                 second_ability: m.abilities[1] ? m.abilities[1].ability.name : "no abitlity",
                 third_ability: m.abilities[2] ? m.abilities[2].ability.name : "no abitlity",
@@ -30,7 +30,7 @@ const DatatablePage = ({ allPokemonData }) => {
             columns: [
                 {
                     label: 'Name',
-                    field: 'name',
+                    field: 'name1',
                     sort: 'asc',
                     width: 50
                 },
@@ -84,7 +84,7 @@ const DatatablePage = ({ allPokemonData }) => {
                     {allPokemonData.map((m,i) => {
                         return (
                             <tr key={i}>
-                                <td><Link to={`/pokemondetails/${m.name}`}><h4 className="headline_pok_name">{m.name}</h4></Link></td>
+                                <td><Link to={`/pokemondetails/${m.name}`}>{m.name}</Link></td>
                                 <td>{m.abilities[0] ? m.abilities[0].ability.name : "no abitlity"}</td>
                                 <td>{m.abilities[1] ? m.abilities[1].ability.name : "no abitlity"}</td>
                                 <td>{m.abilities[2] ? m.abilities[2].ability.name : "no abitlity"}</td>
@@ -104,7 +104,7 @@ const DatatablePage = ({ allPokemonData }) => {
                 <label className="custom-control-label" htmlFor="defaultUnchecked">Show all pokemons</label>
             </div>
 
-            { !showAllData && <MDBDataTable
+            { !showAllData && <MDBDataTable id='table1'
                 striped
                 bordered
                 data={tableData()} />}
