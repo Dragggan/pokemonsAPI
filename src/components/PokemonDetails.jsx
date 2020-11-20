@@ -10,7 +10,16 @@ function PokemonDetails({ allPokemonData, match }) {
     console.log(pokemonDetails);
 
     const getPokemonDetailsData = () => {
-        let singlePokemon = allPokemonData.filter(m => m.name === match.params.name);
+        let singlePokemon = [];
+
+        // Using local storage to hold the date after refres
+        if (allPokemonData.length > 0) {
+            singlePokemon = allPokemonData.filter(m => m.name === match.params.name);
+            localStorage.setItem('myData', JSON.stringify(singlePokemon));
+        }
+        else {
+            singlePokemon = JSON.parse(localStorage.getItem('myData'));
+        }
         setPokemonDetails(singlePokemon);
     };
 
@@ -24,25 +33,25 @@ function PokemonDetails({ allPokemonData, match }) {
 
 
 
-return (
-    <div className="pokemon_details_container">
-        <figure className="figure" className="figure">
-            <figcaption className="figure-caption">
-                <h2>{match.params.name}</h2>
-                {pokemonDetails.map(m => {
-                    return (
-                        <div>
-                            <img src={`${pokemonDetails[0].sprites.other.dream_world.front_default}`} />
-                            <h4>type: {m.types[0].type.name}</h4>
-                            <ModalPage allPokemonData={allPokemonData} pokemonDetails={pokemonDetails} />
-                        </div>
-                    );
-                })}
-            </figcaption>
-        </figure>
+    return (
+        <div className="pokemon_details_container">
+            <figure className="figure" className="figure">
+                <figcaption className="figure-caption">
+                    <h2>{match.params.name}</h2>
+                    {pokemonDetails.map(m => {
+                        return (
+                            <div>
+                                <img src={`${pokemonDetails[0].sprites.other.dream_world.front_default}`} />
+                                <h4>type: {m.types[0].type.name}</h4>
+                                <ModalPage allPokemonData={allPokemonData} pokemonDetails={pokemonDetails} />
+                            </div>
+                        );
+                    })}
+                </figcaption>
+            </figure>
 
-    </div>
-);
+        </div>
+    );
 
 
 
