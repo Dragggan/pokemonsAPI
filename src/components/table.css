@@ -1,17 +1,18 @@
-tbody + thead{
-    display: none;
-  }
+tbody + thead {
+  display: none;
+}
 
-  td,th {
-      text-align: center;
-      vertical-align: middle !important;
-  }
+td,
+th {
+  text-align: center;
+  vertical-align: middle !important;
+}
 
-  .pok_image {
-      max-width: 50px;
-      max-height: 50px;
-  }
+.pok_image {
+  max-width: 50px;
+  max-height: 50px;
+}
 
-  .headline_pok_name {
-      color: #0095ff;
-  }
+.headline_pok_name {
+  color: #0095ff;
+}

@@ -6,28 +6,22 @@ export const handleError = (err) => {
 };
 
 
-  
-
-
-
-
 export const getPokemnos = async () => {
-
     let tempFirstResponse=[];
-    let temp=[];
     let fullResponse=[];
+
     await axios.get(`https://pokeapi.co/api/v2/pokemon/`)
       .then(response => {
         tempFirstResponse = response.data.results;
       })
-      .then( async (data) => {
+      .then( async () => {
         for (let i = 0; i < tempFirstResponse.length; i++) {
-           await axios.get(tempFirstResponse[i].url).then(response=>{
-            temp = response.data;
-            fullResponse.push(temp)
+           await axios.get(tempFirstResponse[i].url)
+           .then(response=>{
+            fullResponse.push(response.data)
           })
         }
     })
-    .catch(err=>console.log(err))
+    .catch(err=>handleError(err))
     return fullResponse
       }

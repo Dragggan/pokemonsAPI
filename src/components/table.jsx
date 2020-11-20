@@ -17,12 +17,13 @@ const DatatablePage = ({ allPokemonData }) => {
         let rows  = [] ;
         allPokemonData.map(m => {
             rows.push({
-                name: <Link to={`/pokemondetails/${m.name}`}><h4 className="headline_pok_name">{m.name}</h4></Link>,
-                first_ability: m.abilities[0] && m.abilities[0].ability.name,
+                name: <Link to={`/pokemondetails/${m.name}`}>{m.name}</Link>,
+                first_ability: m.abilities[0] ? m.abilities[0].ability.name : "no abitlity",
                 second_ability: m.abilities[1] ? m.abilities[1].ability.name : "no abitlity",
                 third_ability: m.abilities[2] ? m.abilities[2].ability.name : "no abitlity",
-                image: <img src={m.sprites.back_default} className="pok_image" />
+                image: <img src={m.sprites.back_default} className="pok_image" alt=""/>
             });
+            return null
         });
 
         const data = {
@@ -80,14 +81,14 @@ const DatatablePage = ({ allPokemonData }) => {
                     </tr>
                 </MDBTableHead>
                 <MDBTableBody>
-                    {allPokemonData.map(m => {
+                    {allPokemonData.map((m,i) => {
                         return (
-                            <tr>
+                            <tr key={i}>
                                 <td><Link to={`/pokemondetails/${m.name}`}><h4 className="headline_pok_name">{m.name}</h4></Link></td>
                                 <td>{m.abilities[0] ? m.abilities[0].ability.name : "no abitlity"}</td>
                                 <td>{m.abilities[1] ? m.abilities[1].ability.name : "no abitlity"}</td>
                                 <td>{m.abilities[2] ? m.abilities[2].ability.name : "no abitlity"}</td>
-                                <td><img src={m.sprites.back_default} className="pok_image" /></td>
+                                <td><img src={m.sprites.back_default} className="pok_image" alt=""/></td>
                             </tr>
                         );
                     })}
@@ -96,13 +97,11 @@ const DatatablePage = ({ allPokemonData }) => {
         );
     };
 
-
     return (
         <>
-            {/* <button type="checkbox" onClick={togleAllData}>All data</button> */}
-            <div class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input" id="defaultUnchecked" onChange={togleAllData} />
-                <label class="custom-control-label" for="defaultUnchecked">All data</label>
+            <div className="custom-control custom-checkbox">
+                <input type="checkbox" className="custom-control-input" id="defaultUnchecked" onChange={togleAllData} />
+                <label className="custom-control-label" htmlFor="defaultUnchecked">Show all pokemons</label>
             </div>
 
             { !showAllData && <MDBDataTable
