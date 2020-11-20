@@ -1,28 +1,48 @@
 import React, { useEffect, useState } from 'react';
-import { Pagination } from 'semantic-ui-react'
+import { MDBCard, MDBCardBody, MDBCardImage, MDBCardTitle, MDBCardText, MDBCol, MDBBtn } from 'mdbreact';
+import ModalPage from './modal';
+import { MDBContainer, MDBModal, MDBModalBody, MDBModalHeader, MDBModalFooter } from 'mdbreact';
+import './pokemonDetails.css';
 
 function PokemonDetails({ allPokemonData, match }) {
 
     const [pokemonDetails, setPokemonDetails] = useState([]);
+    console.log(pokemonDetails);
 
-    const PaginationExamplePagination = () => (
-        <Pagination defaultActivePage={5} totalPages={10} />
-      )
-      
-      
+    const getPokemonDetailsData = () => {
+        let singlePokemon = allPokemonData.filter(m => m.name === match.params.name);
+        setPokemonDetails(singlePokemon);
+    };
 
-    // useEffect(async () => {
-    //     if (allPokemonData && match.params) {
-    //         let singlePokemon = allPokemonData.filter(m => m.name === match.params.name);
-    //         const result = await getPokemonDetails(singlePokemon[0].url);
-    //         setPokemonDetails(result);
-    //     }
-    // }, [match.params.name]);
-    return (
-        <div className="pokemon_details_container">
-       dghgfdhgfhgf
-        </div>
-    );
+
+    useEffect(() => {
+        if (allPokemonData && match.params) {
+            getPokemonDetailsData();
+        }
+    }, [match.params.name]);
+
+
+
+
+return (
+    <div className="pokemon_details_container">
+        <figure className="figure" className="figure">
+            <figcaption className="figure-caption">
+                <h2>{match.params.name}</h2>
+                {pokemonDetails.map(m => {
+                    return (
+                        <div>
+                            <img src={`${pokemonDetails[0].sprites.other.dream_world.front_default}`} />
+                            <h4>type: {m.types[0].type.name}</h4>
+                            <ModalPage allPokemonData={allPokemonData} pokemonDetails={pokemonDetails} />
+                        </div>
+                    );
+                })}
+            </figcaption>
+        </figure>
+
+    </div>
+);
 
 
 

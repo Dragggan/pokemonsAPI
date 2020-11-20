@@ -9,18 +9,18 @@ const DatatablePage = ({ allPokemonData }) => {
 
     const [showAllData, setAllData] = useState(false);
 
-    const togleAllData = () => {
+    const togleAllData = ()  => {
         setAllData(!showAllData);
     };
 
     const tableData = () => {
-        let rows = [];
+        let rows  = [] ;
         allPokemonData.map(m => {
             rows.push({
                 name: <Link to={`/pokemondetails/${m.name}`}><h4 className="headline_pok_name">{m.name}</h4></Link>,
                 first_ability: m.abilities[0] && m.abilities[0].ability.name,
-                second_ability: m.abilities[1] ? m.abilities[1].ability.name : " no abitlity",
-                third_ability: m.abilities[2] ? m.abilities[2].ability.name : " no abitlity",
+                second_ability: m.abilities[1] ? m.abilities[1].ability.name : "no abitlity",
+                third_ability: m.abilities[2] ? m.abilities[2].ability.name : "no abitlity",
                 image: <img src={m.sprites.back_default} className="pok_image" />
             });
         });
@@ -112,7 +112,7 @@ const DatatablePage = ({ allPokemonData }) => {
             { showAllData && BasicTable()}
         </>
     );
-
 };
+
 
 export default DatatablePage;

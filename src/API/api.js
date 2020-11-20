@@ -27,7 +27,6 @@ export const getPokemnos = async () => {
             fullResponse.push(temp)
           })
         }
-        console.log(fullResponse);
     })
     .catch(err=>console.log(err))
     return fullResponse
